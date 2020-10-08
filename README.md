@@ -1,2 +1,2 @@
 # Texty
-A simple python Text editor
+A simple python Text editor for windows
