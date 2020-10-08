@@ -8,10 +8,15 @@ import subprocess
 import webbrowser
 import keyboard
 
-'''must be run as a .pyw file or in idle or it will
-use the window it is running on for command line and then stop responding '''
 
-'TODO must add open file to compare'
+python_path = 'python'
+python_repl = 'python'
+js_path = 'node'
+js_repl = 'node'
+ruby_path = 'ruby'
+ruby_repl = 'irb'
+C_path = 'c++'
+C_executable = 'a.exe'
 
 
 # Defining TextEditor Class
@@ -132,7 +137,7 @@ class TextEditor:
             for x in text.split('\n'):
                 self.txtarea.insert(END, x + '\n')
 
-        self.root.iconbitmap("icon4.ico")
+        self.root.iconbitmap("icon.ico")
 
         # Calling shortcuts function
         self.shortcuts()
@@ -163,7 +168,7 @@ class TextEditor:
         # Exception handling
         try:
             # Asking for file to open
-            self.filename = filedialog.askopenfilename(title="Select file", filetypes=(("All Files", "*.*"), ("Text Files", "*.txt"), ("Python Files", ('*.py', '*.pyw')),("Javascript Files", "*.js"),("Html Files", "*.html"), ("Ruby Files", "*.rb")), parent=self.root)
+            self.filename = filedialog.askopenfilename(title="Select file", filetypes=(("All Files", "*.*"), ("Text Files", "*.txt"), ("Python Files", ('*.py', '*.pyw')),("Javascript Files", "*.js"),("Html Files", "*.html"), ("Ruby Files", "*.rb"), ("C files", "*.c")), parent=self.root)
             # checking if filename not none
             if self.filename:
                 # opening file in readmode
@@ -210,7 +215,7 @@ class TextEditor:
         # Exception handling
         try:
             # Asking for file name and type to save
-            untitled_file = filedialog.asksaveasfilename(title="Save file As", defaultextension=".py", initialfile="Untitled.py", filetypes=(("All Files", "*.*"), ("Text Files", "*.txt"), ("Python Files", "*.py"), ("Javascript Files", "*.js"),("Html Files", "*.html"), ("Ruby Files", "*.rb")), parent=self.root) 
+            untitled_file = filedialog.asksaveasfilename(title="Save file As", defaultextension=".py", initialfile="Untitled.py", filetypes=(("All Files", "*.*"), ("Text Files", "*.txt"), ("Python Files", "*.py"), ("Javascript Files", "*.js"),("Html Files", "*.html"), ("Ruby Files", "*.rb"), ("C files", "*.c")), parent=self.root) 
             # Reading the data from text area
             data = self.txtarea.get("1.0", END)
             # opening File in write mode
@@ -250,13 +255,17 @@ class TextEditor:
 
     def run(self, *args):
         if self.filename.endswith('.js'):
-            os.system('node ' + self.filename)
+            os.system(js_path + ' ' + self.filename)
         elif self.filename.endswith('.rb'):
-            os.system('ruby ' + self.filename)
+            os.system(ruby_path + ' ' + self.filename)
         elif self.filename.endswith('.html'):
             webbrowser.open(self.filename)
+        elif self.filename.endswith('.c'):
+            os.system(C_path + ' ' + self.filename)
+            os.system(C_executable)
+            os.remove(C_executable)
         else:
-            os.system('python ' + self.filename)
+            os.system(python_path + ' ' + self.filename)
         self.status.set('Run Successfully')
 
     def font_size(self, *args):
@@ -281,11 +290,11 @@ class TextEditor:
 
     def REPL(self, *args):
         if self.filename.endswith('.js'):
-            os.system('node')
+            os.system(js_repl)
         elif self.filename.endswith('.rb'):
-            os.system('irb')
+            os.system(ruby_repl)
         else:
-            os.system('python')
+            os.system(python_repl)
 
     def search (self, *args):
         webbrowser.open(f'https://www.bing.com/search?q={self.get_selected()}')
