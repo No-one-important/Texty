@@ -6,7 +6,6 @@ from tkinter import filedialog
 import os
 import subprocess
 import webbrowser
-import keyboard
 
 
 python_path = 'python'
