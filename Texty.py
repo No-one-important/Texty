@@ -1,3 +1,7 @@
+# Linux version
+
+
+
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import *
@@ -9,13 +13,13 @@ import webbrowser
 
 
 python_path = 'python3'
-python_repl = 'python32'
+python_repl = 'python3'
 js_path = 'node'
 js_repl = 'node'
 ruby_path = 'ruby'
 ruby_repl = 'irb'
-C_path = 'c++'
-C_executable = 'a.exe'
+C_path = 'gcc'
+C_executable = './a.out'
 
 
 # Defining TextEditor Class
