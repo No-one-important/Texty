@@ -1,7 +1,3 @@
-# Linux version
-
-
-
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import *
@@ -290,7 +286,7 @@ class TextEditor:
         webbrowser.open(f'https://dictionary.cambridge.org/search/english/?q={self.get_selected()}')
 
     def open_cmd(self, *args):
-        subprocess.call("C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe")
+        os.system("bash")
 
     def REPL(self, *args):
         if self.filename.endswith('.js'):
