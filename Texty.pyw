@@ -4,7 +4,6 @@ from tkinter import *
 from tkinter import Tk, simpledialog
 from tkinter import filedialog
 import os
-import subprocess
 import webbrowser
 
 
@@ -285,7 +284,7 @@ class TextEditor:
         webbrowser.open(f'https://dictionary.cambridge.org/search/english/?q={self.get_selected()}')
 
     def open_cmd(self, *args):
-        subprocess.call("C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe")
+        os.system('cmd')
 
     def REPL(self, *args):
         if self.filename.endswith('.js'):
@@ -398,3 +397,4 @@ editor = TextEditor(root, "microsoft YI Baiti", 12, '', None)
 
 # Root Window Looping
 root.mainloop()
+
